@@ -30,7 +30,7 @@ public class BoardRepositorySupport extends QuerydslRepositorySupport {
 
     public Page<BoardDto> getBoardList(final Pageable pageable) {
         final JPQLQuery<BoardDto> query = from(board)
-                .where(board.enabled.isTrue()).select(new QBoardDto(board, writer));
+                .where(board.enabled.isFalse()).select(new QBoardDto(board, writer));
 
         final List<BoardDto> projectDtoList = getQuerydsl().applyPagination(pageable, query).fetch();
         return new PageImpl<>(projectDtoList, pageable, query.fetchCount());

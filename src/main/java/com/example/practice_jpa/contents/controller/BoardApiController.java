@@ -25,7 +25,7 @@ public class BoardApiController {
             @ApiImplicitParam(name = "page", dataType = "integer", paramType = "query", value = "페이지 번호", defaultValue = "1"),
             @ApiImplicitParam(name = "direction", dataType = "string", paramType = "query", value = "정렬기준", defaultValue = "ASC"),
             @ApiImplicitParam(name = "size", dataType = "integer", paramType = "query", value = "페이지 사이즈", defaultValue = "10"),
-            @ApiImplicitParam(name = "sort", allowMultiple = true, dataType = "string", paramType = "query", value = "정렬 기준 : 등록일 순(start Date) 최근 순 (")})
+            @ApiImplicitParam(name = "sort", allowMultiple = true, dataType = "string", paramType = "query", value = "정렬 기준 : 등록일 순(start Date) ")})
     @ApiResponses( {
             @ApiResponse(code = 200, message = "OK"),
             @ApiResponse(code = 400, message = "Bad Request", response = CustomRequestException.class),
