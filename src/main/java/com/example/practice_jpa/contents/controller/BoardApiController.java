@@ -1,6 +1,7 @@
 package com.example.practice_jpa.contents.controller;
 
 import com.example.practice_jpa.common.exception.CustomRequestException;
+import com.example.practice_jpa.contents.dto.CustomRequest;
 import com.example.practice_jpa.contents.service.BoardService;
 import io.swagger.annotations.*;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +29,7 @@ public class BoardApiController {
             @ApiResponse(code = 500, message = "Internal Server Error", response = CustomRequestException.class)
     })
     @GetMapping
-    public ResponseEntity<?> boardList(final CustomReq req) {
+    public ResponseEntity<?> boardList(final CustomRequest req) {
         return ResponseEntity.ok().body(service.getBoardList(req.of()));
     }
 
