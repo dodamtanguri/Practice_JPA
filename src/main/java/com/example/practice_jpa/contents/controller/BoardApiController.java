@@ -46,7 +46,7 @@ public class BoardApiController {
         return ResponseEntity.ok().body(service.getBoardDetail(id));
     }
 
-    @ApiOperation(value = "프로젝트 등룩")
+    @ApiOperation(value = "게시물 등록")
     @ApiResponse(code = 204, message = "")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PostMapping
