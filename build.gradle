@@ -30,8 +30,8 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
     // Swagger2
-    compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
-    compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+    implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+    implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
 
     // Querydsl
     compile("com.querydsl:querydsl-jpa")
