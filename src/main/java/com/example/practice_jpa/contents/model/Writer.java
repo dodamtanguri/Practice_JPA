@@ -1,6 +1,7 @@
 package com.example.practice_jpa.contents.model;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -20,6 +21,9 @@ public class Writer {
     @Column(name = "email", unique = true)
     private String email;
 
-    @Column(name = "phone")
-    private String phone;
+    @Builder
+    public Writer(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
 }

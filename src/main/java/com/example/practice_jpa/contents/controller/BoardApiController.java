@@ -1,14 +1,17 @@
 package com.example.practice_jpa.contents.controller;
 
 import com.example.practice_jpa.common.exception.CustomRequestException;
+import com.example.practice_jpa.contents.dto.BoardDto;
 import com.example.practice_jpa.contents.dto.CustomRequest;
+import com.example.practice_jpa.contents.dto.createBoard;
 import com.example.practice_jpa.contents.service.BoardService;
 import io.swagger.annotations.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Api(tags = "Board")
 @RestController
@@ -31,6 +34,25 @@ public class BoardApiController {
     @GetMapping
     public ResponseEntity<?> boardList(final CustomRequest req) {
         return ResponseEntity.ok().body(service.getBoardList(req.of()));
+    }
+
+    @ApiOperation(value = "게시물 상세")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "OK", response = BoardDto.class),
+            @ApiResponse(code = 400, message = "Bad_request", response = CustomRequestException.class),
+            @ApiResponse(code = 500, message = "Internal Server Error", response = CustomRequestException.class)})
+    @GetMapping("/{id}")
+    public ResponseEntity<?> boardList(@PathVariable("id") final Long id) {
+        return ResponseEntity.ok().body(service.getBoardDetail(id));
+    }
+
+    @ApiOperation(value = "프로젝트 등룩")
+    @ApiResponse(code = 204, message = "")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PostMapping
+    public ResponseEntity<?> createProject(@Valid @RequestBody final createBoard req) {
+        service.createBoard(req);
+        return ResponseEntity.noContent().build();
     }
 
 

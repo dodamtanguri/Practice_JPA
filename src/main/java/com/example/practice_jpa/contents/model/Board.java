@@ -2,6 +2,7 @@ package com.example.practice_jpa.contents.model;
 
 
 import com.example.practice_jpa.common.converters.BooleanConverter;
+import lombok.Builder;
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -46,5 +47,11 @@ public class Board {
         this.enabled = true;
     }
 
+    @Builder
+    public Board(String title, String content, Writer writer) {
+        this.title = title;
+        this.content = content;
+        this.writer = writer;
+    }
 
 }
