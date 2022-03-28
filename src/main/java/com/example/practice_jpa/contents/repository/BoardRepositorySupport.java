@@ -13,11 +13,11 @@ import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 import org.springframework.stereotype.Repository;
 
 
-
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.UUID;
 
+
+import static com.example.practice_jpa.common.exception.CustomRequestException.NO_EXISTED_POST;
 import static com.example.practice_jpa.contents.model.QBoard.board;
 import static com.example.practice_jpa.contents.model.QWriter.writer;
 
@@ -41,7 +41,7 @@ public class BoardRepositorySupport extends QuerydslRepositorySupport {
                 .and(board.id.eq(id));
         Board boardEntity = new JPAQueryFactory(getEntityManager()).selectFrom(board).where(filter).fetchOne();
         if (boardEntity == null) {
-            throw new NoSuchElementException(NOT_EXISTS_PROJECT.getMessage());
+            throw new NoSuchElementException(NO_EXISTED_POST.getMessage());
         }
         return new BoardDto(boardEntity);
     }
