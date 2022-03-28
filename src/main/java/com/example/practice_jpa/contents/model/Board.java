@@ -40,7 +40,6 @@ public class Board {
     private LocalDateTime modifyDate;
 
     @Convert(converter = BooleanConverter.class)
-    @Enumerated(EnumType.STRING)
     private boolean enabled;
 
     public Board() {
