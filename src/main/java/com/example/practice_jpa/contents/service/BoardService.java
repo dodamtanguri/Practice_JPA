@@ -12,10 +12,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import springfox.documentation.swagger2.mappers.ModelMapper;
 
 import java.util.NoSuchElementException;
 
-import static com.example.practice_jpa.common.exception.CustomRequestException.NO_EXISTED_POST;
+import static com.example.practice_jpa.common.enmuns.ErrorCode.NO_EXISTED_POST;
+
 
 
 @Service
@@ -25,7 +27,7 @@ public class BoardService {
     private final BoardRepository boardRepository;
     private final BoardRepositorySupport boardRepositorySupport;
     private final WriterRepository writerRepository;
-
+    private final ModelMapper mapper;
 
     public Page<BoardDto> getBoardList(final Pageable pageable) {
         return boardRepositorySupport.getBoardList(pageable);
@@ -36,14 +38,18 @@ public class BoardService {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public void createBoard(CreateBoard req) {
+    public Board createBoard(CreateBoard req) {
         Writer writer = writerRepository.findByEmail(req.getWriterEmail())
                             .orElseGet(() -> Writer.builder()
                                                 .name(req.getWriterName())
                                                 .email(req.getWriterEmail())
                                                 .build());
 
-        boardRepository.save(Board.builder().title(req.getTitle()).content(req.getContent()).writer(writer).build());
+      return boardRepository.save(Board.builder().title(req.getTitle()).content(req.getContent()).writer(writer).build());
+
+
+
+
     }
 
 

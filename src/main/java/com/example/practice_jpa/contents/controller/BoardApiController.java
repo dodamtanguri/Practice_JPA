@@ -4,6 +4,7 @@ import com.example.practice_jpa.common.exception.CustomRequestException;
 import com.example.practice_jpa.contents.dto.BoardDto;
 import com.example.practice_jpa.contents.dto.CustomRequest;
 import com.example.practice_jpa.contents.dto.CreateBoard;
+import com.example.practice_jpa.contents.model.Board;
 import com.example.practice_jpa.contents.service.BoardService;
 import io.swagger.annotations.*;
 import lombok.RequiredArgsConstructor;
@@ -48,12 +49,15 @@ public class BoardApiController {
     }
 
     @ApiOperation(value = "게시물 등록")
-    @ApiResponse(code = 204, message = "")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 400, message = "Bad Request", response = CustomRequestException.class),
+            @ApiResponse(code = 500, message = "Internal Server Error", response = CustomRequestException.class)
+    })
     @PostMapping
-    public ResponseEntity<?> createBoard(@Valid @RequestBody final CreateBoard req) {
-        service.createBoard(req);
-        return ResponseEntity.noContent().build();
+    public Board createBoard(@Valid @RequestBody final CreateBoard req) {
+
+        return service.createBoard(req);
     }
 
     @ApiOperation(value = "게시물 삭제")

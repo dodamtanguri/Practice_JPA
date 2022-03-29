@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 
-import static com.example.practice_jpa.common.exception.CustomRequestException.NO_EXISTED_POST;
+import static com.example.practice_jpa.common.enmuns.ErrorCode.NO_EXISTED_POST;
 import static com.example.practice_jpa.contents.model.QBoard.board;
 import static com.example.practice_jpa.contents.model.QWriter.writer;
 
