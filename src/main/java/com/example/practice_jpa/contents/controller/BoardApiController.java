@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+
 @Api(tags = "Board")
 @RestController
 @RequestMapping("/api/v1/board")
@@ -54,6 +55,13 @@ public class BoardApiController {
         service.createBoard(req);
         return ResponseEntity.noContent().build();
     }
-
+    @ApiOperation(value = "게시물 삭제")
+    @ApiResponse(code = 204, message = "")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteProject(@PathVariable("id") final Long id) {
+        service.deleteBoard(id);
+        return ResponseEntity.noContent().build();
+    }
 
 }

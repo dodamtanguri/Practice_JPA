@@ -15,6 +15,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.NoSuchElementException;
+import java.util.UUID;
+
+import static com.example.practice_jpa.common.exception.CustomRequestException.NO_EXISTED_POST;
 
 
 @Service
@@ -42,5 +46,14 @@ public class BoardService {
 
         boardRepository.save(Board.builder().title(req.getTitle()).content(req.getContent()).writer(writer).build());
 
+    }
+
+
+    @Transactional(rollbackFor = Exception.class)
+    public void deleteBoard(final Long id) {
+        Board board = boardRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException(NO_EXISTED_POST.getMessage()));
+
+        boardRepository.delete(board);
     }
 }
