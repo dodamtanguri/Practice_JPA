@@ -1,7 +1,7 @@
 package com.example.practice_jpa.common.converters;
 
 import javax.persistence.AttributeConverter;
-import java.text.AttributedCharacterIterator;
+
 
 public class BooleanConverter implements AttributeConverter<Boolean, String> {
     @Override

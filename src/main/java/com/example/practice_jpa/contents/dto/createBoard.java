@@ -10,7 +10,7 @@ import javax.validation.constraints.*;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class createBoard {
+public class CreateBoard {
     @Pattern(regexp = "^[ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9\\s]+$", message = "게시물 제목은 한글, 숫자, 영문만 가능합니다.")
     @NotBlank(message = "게시물 제목은 필수로 입력 해야 합니다.")
     @Length(max = 50, message = "게시물 제목은 50자 이내 입니다.")
@@ -31,7 +31,6 @@ public class createBoard {
     @Email(message = "이메일 형식에 맞지 않습니다.")
     @ApiModelProperty(value = "작성자 이메일", example = "hellomwa.kr@gmail.com")
     private String writerEmail;
-
 
 
 }

@@ -1,7 +1,7 @@
 package com.example.practice_jpa.contents.service;
 
 import com.example.practice_jpa.contents.dto.BoardDto;
-import com.example.practice_jpa.contents.dto.createBoard;
+import com.example.practice_jpa.contents.dto.CreateBoard;
 import com.example.practice_jpa.contents.model.Board;
 import com.example.practice_jpa.contents.model.Writer;
 import com.example.practice_jpa.contents.repository.BoardRepository;
@@ -9,14 +9,11 @@ import com.example.practice_jpa.contents.repository.BoardRepositorySupport;
 import com.example.practice_jpa.contents.repository.WriterRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.NoSuchElementException;
-import java.util.UUID;
 
 import static com.example.practice_jpa.common.exception.CustomRequestException.NO_EXISTED_POST;
 
@@ -39,7 +36,7 @@ public class BoardService {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public void createBoard(createBoard req) {
+    public void createBoard(CreateBoard req) {
         Writer writer = writerRepository.findByEmail(req.getWriterEmail())
                 .orElseGet(() -> Writer.builder().name(req.getWriterName())
                         .email(req.getWriterEmail()).build());

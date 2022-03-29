@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
 import static com.example.practice_jpa.common.enmuns.BoardSort.CREATE_DATE;
+
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CustomRequest {
