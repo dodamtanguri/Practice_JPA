@@ -38,11 +38,12 @@ public class BoardService {
     @Transactional(rollbackFor = Exception.class)
     public void createBoard(CreateBoard req) {
         Writer writer = writerRepository.findByEmail(req.getWriterEmail())
-                .orElseGet(() -> Writer.builder().name(req.getWriterName())
-                        .email(req.getWriterEmail()).build());
+                            .orElseGet(() -> Writer.builder()
+                                                .name(req.getWriterName())
+                                                .email(req.getWriterEmail())
+                                                .build());
 
         boardRepository.save(Board.builder().title(req.getTitle()).content(req.getContent()).writer(writer).build());
-
     }
 
 

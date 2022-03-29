@@ -22,7 +22,7 @@ public class CreateBoard {
     @ApiModelProperty(value = "게시물", example = "여백이나 그림들이 들어있는 하나의 통일된 형태의 낱장들을 모아서 한쪽을 묶어 놓은 것' 으로 정의되고 있습니다.")
     private String content;
 
-    @Pattern(regexp = "^[가-힣a-zA-Z_]+$", message = "작성자 이름은 한글, 숫자, 영문, _만 가능합니다.")
+    @Pattern(regexp = "^[가-힣a-zA-Z_]+$", message = "작성자 이름은 한글,영문, _만 가능합니다.")
     @NotBlank(message = "작성자 이름은 필수로 입력 해야 합니다.")
     @Length(max = 20, message = "작성자 이름은 20자 이내입니다.")
     @ApiModelProperty(value = "작성자 이름", example = "dodam")
