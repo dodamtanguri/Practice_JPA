@@ -56,13 +56,16 @@ public class BoardApiController {
     })
     @PostMapping
     public Board createBoard(@Valid @RequestBody final CreateBoard req) {
-
         return service.createBoard(req);
     }
 
     @ApiOperation(value = "게시물 삭제")
-    @ApiResponse(code = 204, message = "")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 400, message = "Bad Request", response = CustomRequestException.class),
+            @ApiResponse(code = 500, message = "Internal Server Error", response = CustomRequestException.class)
+    })
+    @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteBoard(@PathVariable("id") final Long id) {
         service.deleteBoard(id);

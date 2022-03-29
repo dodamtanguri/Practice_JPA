@@ -21,9 +21,6 @@ public class CustomRequestException {
     @ApiModelProperty(value = "Error Message", example = "Invalid JSON format")
     private String errorMessage;
 
-    private ErrorCode errorCode;
-
-
     @ApiModelProperty(dataType = "java.util.Date", example = "2021-07-29 10:00")
     @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private final LocalDateTime timeStamp;
@@ -42,7 +39,7 @@ public class CustomRequestException {
     public CustomRequestException(RuntimeException e) {
         this();
         this.status = BAD_REQUEST;
-        this.errorMessage = e.getMessage();
+        this.errorMessage = ErrorCode.ERROR.getMessage();
 
     }
 
@@ -55,7 +52,7 @@ public class CustomRequestException {
     public CustomRequestException(Exception e) {
         this();
         this.status = INTERNAL_SERVER_ERROR;
-        this.errorMessage = e.getMessage();
+        this.errorMessage = ErrorCode.ERROR.getMessage();
     }
 
 
