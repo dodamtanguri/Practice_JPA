@@ -37,7 +37,7 @@ public class BoardRepositorySupport extends QuerydslRepositorySupport {
     }
 
     public BoardDto getBoardDetail(final Long id) {
-        BooleanExpression filter = board.enabled.isTrue()
+        BooleanExpression filter = board.enabled.isFalse()
                 .and(board.id.eq(id));
         Board boardEntity = new JPAQueryFactory(getEntityManager()).selectFrom(board).where(filter).fetchOne();
         if (boardEntity == null) {
