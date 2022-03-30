@@ -13,7 +13,8 @@ import javax.persistence.*;
 public class Writer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long writerId;
+    @Column(name = "writer_id")
+    private long id;
 
     @Column(name = "name", length = 20, nullable = false)
     private String name;
