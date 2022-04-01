@@ -29,9 +29,9 @@ public class BoardRepositorySupport extends QuerydslRepositorySupport {
     }
 
     public Page<BoardDto> getBoardList(final Pageable pageable) {
+        //join
         final JPQLQuery<BoardDto> query = from(board)
                 .where(board.enabled.isFalse()).select(new QBoardDto(board, writer));
-
         final List<BoardDto> projectDtoList = getQuerydsl().applyPagination(pageable, query).fetch();
         return new PageImpl<>(projectDtoList, pageable, query.fetchCount());
     }
@@ -39,6 +39,7 @@ public class BoardRepositorySupport extends QuerydslRepositorySupport {
     public BoardDto getBoardDetail(final Long id) {
         BooleanExpression filter = board.enabled.isFalse()
                 .and(board.id.eq(id));
+
         Board boardEntity = new JPAQueryFactory(getEntityManager()).selectFrom(board).where(filter).fetchOne();
         if (boardEntity == null) {
             throw new NoSuchElementException(NO_EXISTED_POST.getMessage());

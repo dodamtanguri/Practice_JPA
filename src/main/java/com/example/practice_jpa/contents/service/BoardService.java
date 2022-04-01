@@ -19,7 +19,6 @@ import java.util.NoSuchElementException;
 import static com.example.practice_jpa.common.enmuns.ErrorCode.NO_EXISTED_POST;
 
 
-
 @Service
 @RequiredArgsConstructor
 public class BoardService {
@@ -39,17 +38,12 @@ public class BoardService {
 
     @Transactional(rollbackFor = Exception.class)
     public Board createBoard(CreateBoard req) {
-        Writer writer = writerRepository.findByEmail(req.getWriterEmail())
-                            .orElseGet(() -> Writer.builder()
-                                                .name(req.getWriterName())
-                                                .email(req.getWriterEmail())
-                                                .build());
+        Writer writer = writerRepository.findByEmail(req.getWriterEmail()).orElseGet(() -> Writer.builder()
+                .name(req.getWriterName())
+                .email(req.getWriterEmail())
+                .build());
 
-      return boardRepository.save(Board.builder().title(req.getTitle()).content(req.getContent()).writer(writer).build());
-
-
-
-
+        return boardRepository.save(Board.builder().title(req.getTitle()).content(req.getContent()).writer(writer).build());
     }
 
 
